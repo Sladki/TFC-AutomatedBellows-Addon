@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tfcautomatedbellows",
+  "name": "AutomatedBellowsAddon",
+  "description": "TFC bellows automatizer addon.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Sladki"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
