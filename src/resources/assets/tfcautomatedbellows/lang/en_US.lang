@@ -1,4 +1,10 @@
 tile.BellowsDriver.name=Bellows Driver
 tile.SteamBoiler.name=Steam Boiler
+tile.PotteryKiln.name=Pottery Kiln
+tile.PotteryKilnChamber.name=Pottery Kiln Chamber
+
 item.BellowsDriver.name=Bellows Driver
 item.SteamBoiler.name=Steam Boiler
+
+container.PotteryKiln.name=Pottery Kiln
+container.PotteryKilnChamber.name=Pottery Kiln Chamber

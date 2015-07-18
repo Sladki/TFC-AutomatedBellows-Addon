@@ -1,4 +1,4 @@
-package sladki.tfc;
+package sladki.tfc.ab.Blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -8,18 +8,25 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import sladki.tfc.ab.AutomatedBellows;
+import sladki.tfc.ab.ModManager;
+import sladki.tfc.ab.TileEntities.TESteamBoiler;
 
-import com.bioxx.tfc.TFCItems;
 import com.bioxx.tfc.Core.TFCTabs;
+import com.bioxx.tfc.Items.Tools.ItemHammer;
+import com.bioxx.tfc.api.TFCItems;
 
 public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 
+	public static IIcon textureSide;
 	public static IIcon textureBottom;
 	public static IIcon textureFront;
-	public static IIcon textureSide;
 	public static IIcon textureTop;
 
 	public BlockSteamBoiler(Material material) {
@@ -34,37 +41,23 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		if (side == 0) { // bottom
+		if(side == 0) {
 			return textureBottom;
-		} else if (side == 1) { // top
-			return textureTop;
-		} else if (side == 2) { // north
-			if (meta == 0) {
-				return textureFront;
-			} else {
-				return textureSide;
-			}
-		} else if (side == 3) { // south
-			if (meta == 2) {
-				return textureFront;
-			} else {
-				return textureSide;
-			}
-		} else if (side == 4) { // west
-			if (meta == 3) {
-				return textureFront;
-			} else {
-				return textureSide;
-			}
-		} else if (side == 5) { // east
-			if (meta == 1) {
-				return textureFront;
-			} else {
-				return textureSide;
-			}
-		} else {
+		}
+		
+		if(side == 1) {
 			return textureTop;
 		}
+		
+		if(side == meta) {
+			return textureFront;
+		}
+		
+		if(side == 3 && meta == 0) {
+			return textureFront;
+		}
+		
+		return textureSide;
 	}
 
 	@Override
@@ -91,9 +84,16 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			steamBoiler.showInfo(player);
 			return true;
 		}
+		
+		if(equippedItem.getItem() instanceof ItemHammer) {
+			int delay = steamBoiler.changeMode();
+		
+			ModManager.sendMessage(player, new ChatComponentText(delay + " seconds delay"));
+			return true;
+		}
 
-		if (equippedItem.getItem() == TFCItems.FireStarter || equippedItem.getItem() == TFCItems.FlintSteel) {
-			if (steamBoiler.launch()) {
+		if(equippedItem.getItem() == TFCItems.FireStarter || equippedItem.getItem() == TFCItems.FlintSteel) {
+			if(steamBoiler.launch()) {
 				int stack = equippedItem.stackSize;
 				int damage = equippedItem.getItemDamage() + 1;
 				player.inventory.setInventorySlotContents(player.inventory.currentItem,
@@ -103,8 +103,8 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if (equippedItem.getItem() == TFCItems.WoodenBucketWater) {
-			if (steamBoiler.addWater()) {
+		if(equippedItem.getItem() == TFCItems.WoodenBucketWater) {
+			if(steamBoiler.fuelBoiler(false, 0)) {
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(
 						TFCItems.WoodenBucketEmpty));
 			}
@@ -112,8 +112,8 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if (equippedItem.getItem() == TFCItems.Coal) {
-			if (steamBoiler.addFuel(200)) {
+		if(equippedItem.getItem() == TFCItems.Coal) {
+			if(steamBoiler.fuelBoiler(true, 200)) {
 				if (equippedItem.stackSize == 1) {
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				} else {
@@ -125,9 +125,9 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if (equippedItem.getItem() == TFCItems.Logs) {
-			if (steamBoiler.addFuel(40)) {
-				if (equippedItem.stackSize == 1) {
+		if(equippedItem.getItem() == TFCItems.Logs) {
+			if(steamBoiler.fuelBoiler(true, 40)) {
+				if(equippedItem.stackSize == 1) {
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
 				} else {
 					equippedItem.stackSize--;
@@ -143,8 +143,18 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack is) {
-		int l = MathHelper.floor_double(entityliving.rotationYaw * 4F / 360F + 0.5D) & 3;
-		world.setBlockMetadataWithNotify(i, j, k, l, 0x2);
+		int l = MathHelper.floor_double((double) (entityliving.rotationYaw * 4F / 360F) + 0.5D) & 3;
+		
+		if(l == 0) {
+			world.setBlockMetadataWithNotify(i, j, k, 2, 0x2);
+		} else if(l == 1) {
+			world.setBlockMetadataWithNotify(i, j, k, 5, 0x2);
+		} else if(l == 2) {
+			world.setBlockMetadataWithNotify(i, j, k, 3, 0x2);
+		} else if(l == 3) {
+			world.setBlockMetadataWithNotify(i, j, k, 4, 0x2);
+		}
+		
 	}
 
 	@Override

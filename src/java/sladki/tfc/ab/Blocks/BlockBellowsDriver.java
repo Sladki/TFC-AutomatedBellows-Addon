@@ -1,7 +1,9 @@
-package sladki.tfc;
+package sladki.tfc.ab.Blocks;
 
 import java.util.Random;
 
+import sladki.tfc.ab.AutomatedBellows;
+import sladki.tfc.ab.TileEntities.TESteamBoiler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,6 +27,14 @@ public class BlockBellowsDriver extends Block {
 		super(material);
 		this.setCreativeTab(TFCTabs.TFCDevices);
 	}
+	
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random a) {
+		if (!world.isRemote && world.isBlockIndirectlyGettingPowered(x, y, z)) {
+			activateBellows(world, x, y, z);
+		}
+		world.scheduleBlockUpdate(x, y, z, this, 10);
+	}
 
 	private boolean activateBellows(World world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
@@ -41,7 +51,7 @@ public class BlockBellowsDriver extends Block {
 		}
 
 		if (!bellows.shouldBlow) {
-			if (steamBoiler.consumeSteam(1)) {
+			if (steamBoiler.getSteam()) {
 				bellows.shouldBlow = true;
 				world.markBlockForUpdate(bellows.xCoord, bellows.yCoord, bellows.zCoord);
 				world.markBlockForUpdate(steamBoiler.xCoord, steamBoiler.yCoord, steamBoiler.zCoord);
@@ -54,11 +64,11 @@ public class BlockBellowsDriver extends Block {
 		int bellowsX = x;
 		int bellowsZ = z;
 
-		if (meta == 0) {
+		if (meta == 2) {
 			bellowsZ++;
-		} else if (meta == 1) {
+		} else if (meta == 5) {
 			bellowsX--;
-		} else if (meta == 2) {
+		} else if (meta == 3) {
 			bellowsZ--;
 		} else {
 			bellowsX++;
@@ -72,61 +82,39 @@ public class BlockBellowsDriver extends Block {
 	}
 
 	@Override
-	public IIcon getIcon(int i, int j) {
-		if (i == 0 || i == 1) // bottom and top
-		{
-			return textureSide;
-		} else if (i == 2) // north
-		{
-			if (j == 2) {
-				return textureFront;
-			} else if (j == 0) {
-				return textureBack;
-			} else if (j == 1 || j == 3) {
-				return textureSide;
-			}
-		} else if (i == 3) // south
-		{
-			if (j == 0) {
-				return textureFront;
-			} else if (j == 2) {
-				return textureBack;
-			} else if (j == 1 || j == 3) {
-				return textureSide;
-			}
-		} else if (i == 4) // west
-		{
-			if (j == 1) {
-				return textureFront;
-			} else if (j == 3) {
-				return textureBack;
-			} else if (j == 0 || j == 2) {
-				return textureSide;
-			}
-		} else if (i == 5) // east
-		{
-			if (j == 3) {
-				return textureFront;
-			} else if (j == 1) {
-				return textureBack;
-			} else if (j == 0 || j == 2) {
-				return textureSide;
-			}
-		} else {
+	public IIcon getIcon(int side, int meta) {		
+		if(side == meta) {
 			return textureBack;
 		}
-		return textureBack;
+		
+		if(side == 2 || side == 3) {
+			if(meta == 2 || meta == 3) {
+				return textureFront;
+			}
+		}
+		
+		if(side == 4 || side == 5) {
+			if(meta == 4 || meta == 5) {
+				return textureFront;
+			}
+		}
+		
+		if(side == 3 && meta == 0) {
+			return textureFront;
+		}
+		
+		return textureSide;
 	}
 
 	private TESteamBoiler getSteamBoiler(World world, int x, int y, int z, int meta) {
 		int steamBoilerX = x;
 		int steamBoilerZ = z;
 
-		if (meta == 0) {
+		if (meta == 2) {
 			steamBoilerZ--;
-		} else if (meta == 1) {
+		} else if (meta == 5) {
 			steamBoilerX++;
-		} else if (meta == 2) {
+		} else if (meta == 3) {
 			steamBoilerZ++;
 		} else {
 			steamBoilerX--;
@@ -149,7 +137,16 @@ public class BlockBellowsDriver extends Block {
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack is) {
 		int l = MathHelper.floor_double(entityliving.rotationYaw * 4F / 360F + 0.5D) & 3;
-		world.setBlockMetadataWithNotify(i, j, k, l, 0x2);
+
+		if(l == 0) {
+			world.setBlockMetadataWithNotify(i, j, k, 2, 0x2);
+		} else if(l == 1) {
+			world.setBlockMetadataWithNotify(i, j, k, 5, 0x2);
+		} else if(l == 2) {
+			world.setBlockMetadataWithNotify(i, j, k, 3, 0x2);
+		} else if(l == 3) {
+			world.setBlockMetadataWithNotify(i, j, k, 4, 0x2);
+		}
 	}
 
 	@Override
@@ -157,15 +154,5 @@ public class BlockBellowsDriver extends Block {
 		textureSide = registerer.registerIcon(AutomatedBellows.MODID + ":" + "bellowsDriverSide");
 		textureFront = registerer.registerIcon(AutomatedBellows.MODID + ":" + "bellowsDriverFront");
 		textureBack = registerer.registerIcon(AutomatedBellows.MODID + ":" + "bellowsDriverBack");
-	}
-
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random a) {
-		if (!world.isRemote && world.isBlockIndirectlyGettingPowered(x, y, z)) {
-			if (activateBellows(world, x, y, z)) {
-				world.scheduleBlockUpdate(x, y, z, this, 8);
-			}
-		}
-		world.scheduleBlockUpdate(x, y, z, this, 20);
 	}
 }
