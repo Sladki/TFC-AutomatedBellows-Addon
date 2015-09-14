@@ -11,7 +11,7 @@ public class ItemBlockSteamBoiler extends ItemTerraBlock {
 
 	public ItemBlockSteamBoiler(Block block) {
 		super(block);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 
 	@Override
