@@ -11,7 +11,7 @@ public class ItemBlockAutomatedBellows extends ItemTerraBlock {
 
 	public ItemBlockAutomatedBellows(Block block) {
 		super(block);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +34,7 @@ public class BlockPotteryKiln extends BlockContainer {
 
 	public BlockPotteryKiln(Material material) {
 		super(material);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 	
 	@Override
@@ -64,7 +63,7 @@ public class BlockPotteryKiln extends BlockContainer {
 			
 			//Fire starter of flint n' steel
 			
-			if(equippedItem.getItem() == TFCItems.FireStarter || equippedItem.getItem() == TFCItems.FlintSteel) {
+			if(equippedItem.getItem() == TFCItems.fireStarter || equippedItem.getItem() == TFCItems.flintSteel) {
 				if(world.getBlock(x, y + 1, z) == ModManager.PotteryKilnChamberBlock) {
 					if(tileEntity.light()) {
 						kilnSetWorking(true, world, x, y, z);

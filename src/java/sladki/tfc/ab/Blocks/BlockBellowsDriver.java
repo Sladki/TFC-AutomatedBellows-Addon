@@ -25,7 +25,7 @@ public class BlockBellowsDriver extends Block {
 
 	public BlockBellowsDriver(Material material) {
 		super(material);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 	
 	@Override

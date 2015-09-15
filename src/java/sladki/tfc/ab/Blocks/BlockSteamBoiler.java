@@ -31,7 +31,7 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 
 	public BlockSteamBoiler(Material material) {
 		super(material);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if(equippedItem.getItem() == TFCItems.FireStarter || equippedItem.getItem() == TFCItems.FlintSteel) {
+		if(equippedItem.getItem() == TFCItems.fireStarter || equippedItem.getItem() == TFCItems.flintSteel) {
 			if(steamBoiler.launch()) {
 				int stack = equippedItem.stackSize;
 				int damage = equippedItem.getItemDamage() + 1;
@@ -103,16 +103,16 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if(equippedItem.getItem() == TFCItems.WoodenBucketWater) {
+		if(equippedItem.getItem() == TFCItems.woodenBucketWater) {
 			if(steamBoiler.fuelBoiler(false, 0)) {
 				player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(
-						TFCItems.WoodenBucketEmpty));
+						TFCItems.woodenBucketEmpty));
 			}
 			world.markBlockForUpdate(steamBoiler.xCoord, steamBoiler.yCoord, steamBoiler.zCoord);
 			return true;
 		}
 
-		if(equippedItem.getItem() == TFCItems.Coal) {
+		if(equippedItem.getItem() == TFCItems.coal) {
 			if(steamBoiler.fuelBoiler(true, 200)) {
 				if (equippedItem.stackSize == 1) {
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
@@ -125,7 +125,7 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		if(equippedItem.getItem() == TFCItems.Logs) {
+		if(equippedItem.getItem() == TFCItems.logs) {
 			if(steamBoiler.fuelBoiler(true, 40)) {
 				if(equippedItem.stackSize == 1) {
 					player.inventory.setInventorySlotContents(player.inventory.currentItem, null);

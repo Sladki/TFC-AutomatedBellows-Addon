@@ -11,7 +11,7 @@ public class ItemBlockPotteryKiln extends ItemTerraBlock {
 	
 	public ItemBlockPotteryKiln(Block block) {
 		super(block);
-		this.setCreativeTab(TFCTabs.TFCDevices);
+		this.setCreativeTab(TFCTabs.TFC_DEVICES);
 	}
 
 	@Override

@@ -57,27 +57,27 @@ public class ModManager {
 	public static void registerRecipes() {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BellowsDriverBlock, 1, 0), new Object[] {
 				"   ", "SPS", "   ",
-				Character.valueOf('S'), new ItemStack(TFCItems.WroughtIronSheet),
+				Character.valueOf('S'), new ItemStack(TFCItems.wroughtIronSheet),
 				Character.valueOf('P'),	new ItemStack(Blocks.piston)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(SteamBoilerBlock, 1, 0), new Object[] {
 				" C ", "SBS", " C ",
-				Character.valueOf('C'), new ItemStack(TFCItems.ClayBall, 0, 1),
-				Character.valueOf('S'), new ItemStack(TFCItems.WroughtIronSheet),
-				Character.valueOf('B'), new ItemStack(TFCBlocks.FireBrick)
+				Character.valueOf('C'), new ItemStack(TFCItems.clayBall, 0, 1),
+				Character.valueOf('S'), new ItemStack(TFCItems.wroughtIronSheet),
+				Character.valueOf('B'), new ItemStack(TFCBlocks.fireBrick)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(PotteryKilnBlock, 1, 0), new Object[] {
 			"BBB", "C C", "BBB",
-			Character.valueOf('C'), new ItemStack(TFCItems.ClayBall, 0, 1),
-			Character.valueOf('B'), new ItemStack(TFCItems.FireBrick, 0, 1) 
+			Character.valueOf('C'), new ItemStack(TFCItems.clayBall, 0, 1),
+			Character.valueOf('B'), new ItemStack(TFCItems.fireBrick, 0, 1)
 		}));
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(PotteryKilnChamberBlock, 1, 0), new Object[] {
 			"B B", "C C", "B B",
-			Character.valueOf('C'), new ItemStack(TFCItems.ClayBall, 0, 1),
-			Character.valueOf('B'), new ItemStack(TFCItems.FireBrick, 0, 1)
+			Character.valueOf('C'), new ItemStack(TFCItems.clayBall, 0, 1),
+			Character.valueOf('B'), new ItemStack(TFCItems.fireBrick, 0, 1)
 		}));
 	}
 	

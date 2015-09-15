@@ -58,14 +58,14 @@ public class TEPotteryKiln extends TileEntity implements IInventory {
 		if(launchTime > 0) {
 			
 			if(inventory[3] == null) {
-				if(TFC_Time.getTotalTicks() >= launchTime + 5 * TFC_Time.hourLength) {
+				if(TFC_Time.getTotalTicks() >= launchTime + 5 * TFC_Time.HOUR_LENGTH) {
 					cookItems();
 					stopProcessing();
 				}
 				return;
 			}
 			
-			if(TFC_Time.getTotalTicks() >= launchTime + TFC_Time.hourLength) {
+			if(TFC_Time.getTotalTicks() >= launchTime + TFC_Time.HOUR_LENGTH) {
 				for(int i = 1; i < 4; i++) {
 					if(inventory[i] != null) {
 						inventory[i] = null;
