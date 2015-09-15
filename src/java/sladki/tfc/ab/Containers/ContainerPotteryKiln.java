@@ -50,13 +50,20 @@ public class ContainerPotteryKiln extends Container {
 		if(slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
 			stack = stackInSlot.copy();
+			
+			int containerSlots = 4;
+			if(mode == 1) {
+				containerSlots = 8;
+			}
 			                    
-			if(slot < 8) {
-				if(!this.mergeItemStack(stackInSlot, 8, this.inventorySlots.size(), true)) {
+			if(slot < containerSlots) {
+				if(!this.mergeItemStack(stackInSlot, containerSlots, this.inventorySlots.size(), true)) {
 					return null;
 				}
 			} else {
-				return null;
+				if(!this.mergeItemStack(stackInSlot, 0, containerSlots, false)) {
+					return null;
+				}
 			}
 			
 			if(stackInSlot.stackSize == 0) {
@@ -77,9 +84,29 @@ public class ContainerPotteryKiln extends Container {
 	@Override
 	public boolean mergeItemStack(ItemStack is, int slotStart, int slotFinish, boolean backward) {
 		if(!backward) {
+			
 			if(this.getSlot(slotStart).isItemValid(is)) {
-				return super.mergeItemStack(is, slotStart, slotFinish, backward);
+				
+				Slot containerSlot;
+				for(int slot = slotStart; slot < slotFinish; slot++) {
+					
+					containerSlot = (Slot) this.getSlot(slot);
+					if(containerSlot.getStack() == null) {
+						
+						if(is.stackSize > 0) {
+							containerSlot.putStack(is.copy());
+							containerSlot.getStack().stackSize = 1;
+							containerSlot.onSlotChanged();
+							is.stackSize--;
+							
+							if(is.stackSize == 0) {
+								return true;
+							}
+						}						
+					}
+				}
 			}
+			
 			return false;
 		}
 		return super.mergeItemStack(is, slotStart, slotFinish, backward);
