@@ -2,6 +2,7 @@ tile.BellowsDriver.name=Bellows Driver
 tile.SteamBoiler.name=Steam Boiler
 tile.PotteryKiln.name=Pottery Kiln
 tile.PotteryKilnChamber.name=Pottery Kiln Chamber
+tile.WaterFilter.name=Water Filter
 
 item.BellowsDriver.name=Bellows Driver
 item.SteamBoiler.name=Steam Boiler

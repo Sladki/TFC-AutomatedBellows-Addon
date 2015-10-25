@@ -12,10 +12,12 @@ import sladki.tfc.ab.Blocks.BlockBellowsDriver;
 import sladki.tfc.ab.Blocks.BlockPotteryKiln;
 import sladki.tfc.ab.Blocks.BlockPotteryKilnChamber;
 import sladki.tfc.ab.Blocks.BlockSteamBoiler;
+import sladki.tfc.ab.Blocks.BlockWaterFilter;
 import sladki.tfc.ab.Items.ItemBlockAutomatedBellows;
 import sladki.tfc.ab.Items.ItemBlockPotteryKiln;
 import sladki.tfc.ab.Items.ItemBlockPotteryKilnChamber;
 import sladki.tfc.ab.Items.ItemBlockSteamBoiler;
+import sladki.tfc.ab.Items.ItemBlockWaterFilter;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
 import sladki.tfc.ab.TileEntities.TESteamBoiler;
 
@@ -33,12 +35,16 @@ public class ModManager {
 	public static Block PotteryKilnBlock;
 	public static Block PotteryKilnChamberBlock;
 	
+	public static Block WaterFilterBlock;
+	
 	public static void loadBlocks() {
 		BellowsDriverBlock = new BlockBellowsDriver(Material.iron).setBlockName("BellowsDriver").setHardness(8).setResistance(8);
 		SteamBoilerBlock = new BlockSteamBoiler(Material.iron).setBlockName("SteamBoiler").setHardness(8).setResistance(8);
 		
 		PotteryKilnBlock = new BlockPotteryKiln(Material.rock).setBlockName("PotteryKiln").setHardness(8).setResistance(8);
 		PotteryKilnChamberBlock = new BlockPotteryKilnChamber(Material.rock).setBlockName("PotteryKilnChamber").setHardness(8).setResistance(8);
+		
+		WaterFilterBlock = new BlockWaterFilter(Material.iron).setBlockName("WaterFilter").setHardness(8).setResistance(8);
 	}
 	
 	public static void registerBlocks() {
@@ -47,6 +53,8 @@ public class ModManager {
 		
 		GameRegistry.registerBlock(PotteryKilnBlock, ItemBlockPotteryKiln.class, "PotteryKiln");
 		GameRegistry.registerBlock(PotteryKilnChamberBlock, ItemBlockPotteryKilnChamber.class, "PotteryKilnChamber");
+		
+		GameRegistry.registerBlock(WaterFilterBlock, ItemBlockWaterFilter.class, "WaterFilter");
 	}
 	
 	public static void registerTileEntities() {
@@ -78,6 +86,15 @@ public class ModManager {
 			"B B", "C C", "B B",
 			Character.valueOf('C'), new ItemStack(TFCItems.clayBall, 0, 1),
 			Character.valueOf('B'), new ItemStack(TFCItems.fireBrick, 0, 1)
+		}));
+		
+		//TODO: Add gravel in 0.79.25
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(WaterFilterBlock, 1, 0), new Object[] {
+			" S ", "B B", " C ",
+			Character.valueOf('S'), "blockSand",
+			Character.valueOf('B'), new ItemStack(TFCItems.bronzeSheet),
+			//Character.valueOf('G'), "blockGravel",
+			Character.valueOf('C'), "cobblestone"
 		}));
 	}
 	

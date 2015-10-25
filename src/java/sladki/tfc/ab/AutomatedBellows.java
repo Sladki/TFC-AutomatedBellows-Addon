@@ -11,7 +11,7 @@ public class AutomatedBellows {
 
 	public static final String MODID = "tfcautomatedbellows";
 	public static final String MODNAME = "AutomatedBellowsAddon";
-	public static final String VERSION = "1.01";
+	public static final String VERSION = "1.03";
 	
 	@Instance("tfcautomatedbellows")
     public static AutomatedBellows instance;
@@ -29,6 +29,8 @@ public class AutomatedBellows {
 		
 		proxy.registerRenderInformation();
 		proxy.registerGuiHandler();
+		
+		proxy.registerWailaHandler();
 	}
 
 }
