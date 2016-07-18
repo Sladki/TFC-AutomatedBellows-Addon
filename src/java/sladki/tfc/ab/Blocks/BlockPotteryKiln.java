@@ -2,6 +2,11 @@ package sladki.tfc.ab.Blocks;
 
 import java.util.Random;
 
+import com.bioxx.tfc.Core.TFCTabs;
+import com.bioxx.tfc.api.TFCItems;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -18,12 +23,6 @@ import net.minecraft.world.World;
 import sladki.tfc.ab.AutomatedBellows;
 import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
-
-import com.bioxx.tfc.Core.TFCTabs;
-import com.bioxx.tfc.api.TFCItems;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockPotteryKiln extends BlockContainer {
 	
@@ -56,7 +55,7 @@ public class BlockPotteryKiln extends BlockContainer {
 		if(equippedItem != null) {
 			//If Kiln Chamber block
 			if(side == 1) {
-				if(equippedItem.getItem() == Item.getItemFromBlock(ModManager.PotteryKilnChamberBlock)) {
+				if(equippedItem.getItem() == Item.getItemFromBlock(ModManager.potteryKilnChamberBlock)) {
 					return false;
 				}
 			}
@@ -64,7 +63,7 @@ public class BlockPotteryKiln extends BlockContainer {
 			//Fire starter of flint n' steel
 			
 			if(equippedItem.getItem() == TFCItems.fireStarter || equippedItem.getItem() == TFCItems.flintSteel) {
-				if(world.getBlock(x, y + 1, z) == ModManager.PotteryKilnChamberBlock) {
+				if(world.getBlock(x, y + 1, z) == ModManager.potteryKilnChamberBlock) {
 					if(tileEntity.light()) {
 						kilnSetWorking(true, world, x, y, z);
 						int stack = equippedItem.stackSize;
@@ -90,7 +89,7 @@ public class BlockPotteryKiln extends BlockContainer {
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
 		super.onNeighborBlockChange(world, x, y, z, block);
 
-		if(world.getBlock(x, y + 1, z) != ModManager.PotteryKilnChamberBlock) {
+		if(world.getBlock(x, y + 1, z) != ModManager.potteryKilnChamberBlock) {
 			kilnSetWorking(false, world, x, y, z);
 		}
 	}

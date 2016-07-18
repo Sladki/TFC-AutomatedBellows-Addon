@@ -1,5 +1,9 @@
 package sladki.tfc.ab.Blocks;
 
+import com.bioxx.tfc.Core.TFCTabs;
+import com.bioxx.tfc.Items.Tools.ItemHammer;
+import com.bioxx.tfc.api.TFCItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -9,18 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import sladki.tfc.ab.AutomatedBellows;
 import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.TileEntities.TESteamBoiler;
-
-import com.bioxx.tfc.Core.TFCTabs;
-import com.bioxx.tfc.Items.Tools.ItemHammer;
-import com.bioxx.tfc.api.TFCItems;
 
 public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 

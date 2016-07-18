@@ -2,27 +2,18 @@ package sladki.tfc.ab.Blocks;
 
 import java.util.Random;
 
-import sladki.tfc.ab.AutomatedBellows;
-import sladki.tfc.ab.ModManager;
-import sladki.tfc.ab.TileEntities.TESteamBoiler;
+import com.bioxx.tfc.Core.TFCTabs;
+import com.bioxx.tfc.api.TFCBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import com.bioxx.tfc.Core.TFCTabs;
-import com.bioxx.tfc.Items.Tools.ItemHammer;
-import com.bioxx.tfc.TileEntities.TEBellows;
-import com.bioxx.tfc.api.TFCBlocks;
-import com.bioxx.tfc.api.TFCItems;
+import sladki.tfc.ab.AutomatedBellows;
 
 public class BlockWaterFilter extends Block {
 

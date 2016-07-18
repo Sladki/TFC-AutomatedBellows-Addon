@@ -1,8 +1,7 @@
 package sladki.tfc.ab.Blocks;
 
-import sladki.tfc.ab.AutomatedBellows;
-import sladki.tfc.ab.ModManager;
-import sladki.tfc.ab.TileEntities.TEPotteryKiln;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -11,8 +10,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import sladki.tfc.ab.AutomatedBellows;
+import sladki.tfc.ab.ModManager;
+import sladki.tfc.ab.TileEntities.TEPotteryKiln;
 
 public class BlockPotteryKilnChamber extends Block {
 	
@@ -53,7 +53,7 @@ public class BlockPotteryKilnChamber extends Block {
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
 		super.onNeighborBlockChange(world, x, y, z, block);
 		
-		if(world.getBlock(x, y - 1, z) != ModManager.PotteryKilnBlock) {
+		if(world.getBlock(x, y - 1, z) != ModManager.potteryKilnBlock) {
 			int meta = world.getBlockMetadata(x, y, z);
 			world.getBlock(x, y, z).dropBlockAsItem(world, x, y, z, 0, 0);
 			world.setBlockToAir(x, y, z);
@@ -62,7 +62,7 @@ public class BlockPotteryKilnChamber extends Block {
 	
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		if(world.getBlock(x, y - 1, z) == ModManager.PotteryKilnBlock) {
+		if(world.getBlock(x, y - 1, z) == ModManager.potteryKilnBlock) {
 			return true;
 		}
 		return false;

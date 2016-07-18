@@ -1,4 +1,4 @@
-package sladki.tfc.ab;
+package sladki.tfc.ab.Handlers;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.Blocks.BlockPotteryKiln;
 import sladki.tfc.ab.Blocks.BlockSteamBoiler;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
@@ -41,7 +42,7 @@ public class WailaHandler implements IWailaDataProvider {
 		
 		Block block = accessor.getBlock();
 		
-		if(block == ModManager.SteamBoilerBlock) {
+		if(block == ModManager.steamBoilerBlock) {
 			
 			NBTTagCompound tagCompound = accessor.getNBTData();
 			
@@ -60,7 +61,7 @@ public class WailaHandler implements IWailaDataProvider {
 
 			currenttip.add("Fuel: " + fuelAmount + " | Delay: " + (delayMode / 20));
 			
-		} else if(block == ModManager.PotteryKilnBlock) {
+		} else if(block == ModManager.potteryKilnBlock) {
 			
 			TEPotteryKiln tileEntity = (TEPotteryKiln) accessor.getTileEntity();
 			NBTTagCompound tagCompound = accessor.getNBTData();

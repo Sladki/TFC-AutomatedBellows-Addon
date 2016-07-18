@@ -1,10 +1,10 @@
 package sladki.tfc.ab.Containers.Slots;
 
+import com.bioxx.tfc.Items.Pottery.ItemPotteryBase;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.bioxx.tfc.Items.Pottery.ItemPotteryBase;
 
 public class SlotPotteryKilnChamber extends Slot {
 

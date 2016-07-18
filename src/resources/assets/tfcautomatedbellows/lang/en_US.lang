@@ -7,5 +7,7 @@ tile.WaterFilter.name=Water Filter
 item.BellowsDriver.name=Bellows Driver
 item.SteamBoiler.name=Steam Boiler
 
+item.WroughtIronRoundShield.name=Wrought Iron Round Shield
+
 container.PotteryKiln.name=Pottery Kiln
 container.PotteryKilnChamber.name=Pottery Kiln Chamber

@@ -2,6 +2,11 @@ package sladki.tfc.ab.TileEntities;
 
 import java.util.Random;
 
+import com.bioxx.tfc.Core.TFC_Core;
+import com.bioxx.tfc.Core.TFC_Time;
+import com.bioxx.tfc.api.Crafting.KilnCraftingManager;
+import com.bioxx.tfc.api.Crafting.KilnRecipe;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,11 +20,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import sladki.tfc.ab.Blocks.BlockPotteryKiln;
-
-import com.bioxx.tfc.Core.TFC_Core;
-import com.bioxx.tfc.Core.TFC_Time;
-import com.bioxx.tfc.api.Crafting.KilnCraftingManager;
-import com.bioxx.tfc.api.Crafting.KilnRecipe;
 
 public class TEPotteryKiln extends TileEntity implements IInventory {
 	
@@ -61,6 +61,8 @@ public class TEPotteryKiln extends TileEntity implements IInventory {
 				if(TFC_Time.getTotalTicks() >= launchTime + 5 * TFC_Time.HOUR_LENGTH) {
 					cookItems();
 					stopProcessing();
+					
+					worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 				}
 				return;
 			}

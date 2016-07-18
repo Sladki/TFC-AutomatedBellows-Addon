@@ -1,12 +1,11 @@
 package sladki.tfc.ab.Gui;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.Containers.ContainerPotteryKiln;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
-import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
