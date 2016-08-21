@@ -17,7 +17,7 @@ public class CommonProxy {
 	}
 	
 	public void registerWailaHandler() {
-		FMLInterModComms.sendMessage("Waila", "register", "sladki.tfc.ab.WailaHandler.callbackRegister");
+		FMLInterModComms.sendMessage("Waila", "register", "sladki.tfc.ab.Handlers.WailaHandler.callbackRegister");
 	}
 	
 }

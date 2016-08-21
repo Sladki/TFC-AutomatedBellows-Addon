@@ -1,12 +1,11 @@
 package sladki.tfc.ab.Render;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+import org.lwjgl.opengl.GL11;
 import sladki.tfc.ab.Blocks.BlockPotteryKilnChamber;
 
 public class RenderPotteryKilnChamber implements ISimpleBlockRenderingHandler {

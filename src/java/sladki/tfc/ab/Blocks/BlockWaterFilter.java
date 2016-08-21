@@ -1,10 +1,7 @@
 package sladki.tfc.ab.Blocks;
 
-import java.util.Random;
-
 import com.bioxx.tfc.Core.TFCTabs;
 import com.bioxx.tfc.api.TFCBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +11,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import sladki.tfc.ab.AutomatedBellows;
+
+import java.util.Random;
 
 public class BlockWaterFilter extends Block {
 

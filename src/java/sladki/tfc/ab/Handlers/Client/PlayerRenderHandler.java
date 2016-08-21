@@ -1,8 +1,8 @@
 package sladki.tfc.ab.Handlers.Client;
 
 import com.bioxx.tfc.Core.Player.InventoryPlayerTFC;
+import com.bioxx.tfc.Items.Tools.ItemCustomAxe;
 import com.bioxx.tfc.Items.Tools.ItemWeapon;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +26,7 @@ public class PlayerRenderHandler {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onPlayerRenderTick(RenderPlayerEvent.Specials.Pre event) {
-		if(event.entityPlayer == null || !(event.entityPlayer instanceof EntityPlayer)) {
+		if(event.entityPlayer == null) {
 			return;
 		}
 		
@@ -34,7 +34,7 @@ public class PlayerRenderHandler {
 		EnumShieldStatus shieldStatus = checkShield(player);
 		
 		if(shieldStatus != EnumShieldStatus.NONE) {
-			RENDER_SHIELD.render(player, event.renderer, (shieldStatus == EnumShieldStatus.IN_HAND ? true : false), player.isBlocking());
+			RENDER_SHIELD.render(player, event.renderer, (shieldStatus == EnumShieldStatus.IN_HAND), player.isBlocking());
 		}
 	}
 	
@@ -80,7 +80,8 @@ public class PlayerRenderHandler {
 		
 		//Checking for a shield mount (TRUE if a player is holding weapon in the main hand)
 		if(player.getCurrentEquippedItem() != null) {
-			if(player.getCurrentEquippedItem().getItem() instanceof ItemWeapon) {
+			if(player.getCurrentEquippedItem().getItem() instanceof ItemWeapon
+				|| player.getCurrentEquippedItem().getItem() instanceof ItemCustomAxe) {
 				return EnumShieldStatus.IN_HAND;
 			}
 		}

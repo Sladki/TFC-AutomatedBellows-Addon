@@ -3,7 +3,6 @@ package sladki.tfc.ab.Blocks;
 import com.bioxx.tfc.Core.TFCTabs;
 import com.bioxx.tfc.Items.Tools.ItemHammer;
 import com.bioxx.tfc.api.TFCItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -67,7 +66,7 @@ public class BlockSteamBoiler extends Block implements ITileEntityProvider {
 			return true;
 		}
 
-		TESteamBoiler steamBoiler = null;
+		TESteamBoiler steamBoiler;
 
 		ItemStack equippedItem = player.getCurrentEquippedItem();
 

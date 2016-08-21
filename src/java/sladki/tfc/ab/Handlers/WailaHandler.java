@@ -1,9 +1,6 @@
 package sladki.tfc.ab.Handlers;
 
-import java.util.List;
-
 import com.bioxx.tfc.Core.TFC_Time;
-
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -17,10 +14,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.Blocks.BlockPotteryKiln;
 import sladki.tfc.ab.Blocks.BlockSteamBoiler;
+import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
+
+import java.util.List;
 
 public class WailaHandler implements IWailaDataProvider {
 	

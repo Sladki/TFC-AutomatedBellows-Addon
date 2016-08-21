@@ -1,10 +1,7 @@
 package sladki.tfc.ab.Blocks;
 
-import java.util.Random;
-
 import com.bioxx.tfc.Core.TFCTabs;
 import com.bioxx.tfc.TileEntities.TEBellows;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,6 +13,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import sladki.tfc.ab.AutomatedBellows;
 import sladki.tfc.ab.TileEntities.TESteamBoiler;
+
+import java.util.Random;
 
 public class BlockBellowsDriver extends Block {
 

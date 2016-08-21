@@ -1,10 +1,7 @@
 package sladki.tfc.ab.Blocks;
 
-import java.util.Random;
-
 import com.bioxx.tfc.Core.TFCTabs;
 import com.bioxx.tfc.api.TFCItems;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -23,6 +20,8 @@ import net.minecraft.world.World;
 import sladki.tfc.ab.AutomatedBellows;
 import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.TileEntities.TEPotteryKiln;
+
+import java.util.Random;
 
 public class BlockPotteryKiln extends BlockContainer {
 	

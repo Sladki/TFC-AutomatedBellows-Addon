@@ -5,7 +5,6 @@ import com.bioxx.tfc.Containers.ContainerTFC;
 import com.bioxx.tfc.Containers.Slots.SlotCookableFoodOnly;
 import com.bioxx.tfc.Containers.Slots.SlotSize;
 import com.bioxx.tfc.api.Enums.EnumSize;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,8 +24,7 @@ public class ContainerHandler {
 		
 		if(container instanceof ContainerPlayerTFC
 				|| container instanceof ContainerTFC) {
-			
-			return;
+
 		} else {
 			checkContainer(container, event.entityPlayer);
 		}

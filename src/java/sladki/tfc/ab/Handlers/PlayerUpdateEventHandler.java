@@ -1,12 +1,8 @@
 package sladki.tfc.ab.Handlers;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.bioxx.tfc.TerraFirmaCraft;
 import com.bioxx.tfc.Core.Player.InventoryPlayerTFC;
 import com.bioxx.tfc.Handlers.Network.AbstractPacket;
-
+import com.bioxx.tfc.TerraFirmaCraft;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,9 +13,12 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import sladki.tfc.ab.Handlers.Network.PlayerEquipUpdatePacket;
 import sladki.tfc.ab.Items.Armor.ItemRoundShield;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerUpdateEventHandler {
 	
-	private static HashMap<Integer, Integer> equipMap = new HashMap<Integer, Integer>();
+	private static HashMap<Integer, Integer> equipMap = new HashMap<>();
 	
 	
 	

@@ -1,7 +1,6 @@
 package sladki.tfc.ab.Containers.Slots;
 
 import com.bioxx.tfc.Items.Pottery.ItemPotteryBase;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -16,11 +15,8 @@ public class SlotPotteryKilnChamber extends Slot {
 	@Override
 	public boolean isItemValid(ItemStack itemStack)
 	{
-		if(itemStack.getItem() instanceof ItemPotteryBase) {
-			return true;
-		}
-		return false;
-	}
+        return itemStack.getItem() instanceof ItemPotteryBase;
+    }
 
 	@Override
 	public int getSlotStackLimit()

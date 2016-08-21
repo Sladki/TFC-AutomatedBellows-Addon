@@ -21,6 +21,9 @@ public class ModConfig {
 	public static boolean shieldsEnabled;
 	public static int shieldsBlockChance;
 
+	//Herd staff
+	public static boolean shepherdStaffEnabled;
+	public static boolean herdMuted;
 	
 
 	public static void loadConfig(FMLPreInitializationEvent event) {
@@ -47,7 +50,10 @@ public class ModConfig {
 				, "The chance to block an attack with 90 angle while not blocking. "
 						+ "The chance to block while blocking is 4 times greater.");
 			
-		
+		//Herd staff
+		shepherdStaffEnabled = config.getBoolean("enabled", "shepherd_staff", true, "");
+		herdMuted = config.getBoolean("herd_keeps_silence", "shepherd_staff", true, "");
+
 		config.save();
 	}
 

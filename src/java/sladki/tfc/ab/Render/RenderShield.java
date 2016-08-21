@@ -1,15 +1,18 @@
 package sladki.tfc.ab.Render;
 
-import org.lwjgl.opengl.GL11;
-
+import com.bioxx.tfc.Core.Player.InventoryPlayerTFC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import sladki.tfc.ab.AutomatedBellows;
+import sladki.tfc.ab.Items.Armor.ItemRoundShield;
+import sladki.tfc.ab.ModManager;
 import sladki.tfc.ab.Render.Models.ModelShield;
 
 public class RenderShield {
@@ -17,13 +20,14 @@ public class RenderShield {
 	private float equipProgress = 0.0f;
 	
 	private ModelShield shield = new ModelShield();
-	private static final ResourceLocation SHIELD_TEXTURE = new ResourceLocation(AutomatedBellows.MODID, "textures/models/armor/shield.png");
+	private static final ResourceLocation SHIELD_METAL_TEXTURE = new ResourceLocation(AutomatedBellows.MODID, "textures/models/armor/metalShield.png");
+	private static final ResourceLocation SHIELD_WOODEN_TEXTURE = new ResourceLocation(AutomatedBellows.MODID, "textures/models/armor/woodenShield.png");
 
 	public RenderShield() {}
 	
 	public void render(EntityPlayer player, RenderPlayer renderModel, boolean shieldInHand, boolean isBlocking) {
 		GL11.glPushMatrix();
-		Minecraft.getMinecraft().renderEngine.bindTexture(SHIELD_TEXTURE);
+		setupRender(player);
 		
 		if(shieldInHand) {
 			renderModel.modelBipedMain.bipedLeftArm.postRender(0.0625F);
@@ -41,6 +45,7 @@ public class RenderShield {
 		}
 
 		shield.render();
+
 		GL11.glPopMatrix();
 	}
 	
@@ -49,12 +54,12 @@ public class RenderShield {
 		Minecraft.getMinecraft().entityRenderer.enableLightmap(tick);
 		GL11.glPushMatrix();
 		
-		Minecraft.getMinecraft().renderEngine.bindTexture(SHIELD_TEXTURE);
-		
+		setupRender(player);
+
 		//Lighting
 		int brightness = player.worldObj.getLightBrightnessForSkyBlocks(MathHelper.floor_double(player.posX), MathHelper.floor_double(player.posY), MathHelper.floor_double(player.posZ), 0);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) (brightness % 65536) / 1.0F, (float) (brightness / 65536) / 1.0F);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
 		//Rotate with camera
 		GL11.glRotatef(player.rotationYaw, 0.0f, -1.0f, 0.0f);
@@ -87,5 +92,20 @@ public class RenderShield {
 		GL11.glPopMatrix();
 		Minecraft.getMinecraft().entityRenderer.disableLightmap(tick);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
+	}
+	
+	private void setupRender(EntityPlayer player) {
+		ItemStack itemStack = ((InventoryPlayerTFC) player.inventory).extraEquipInventory[0];
+		if(ItemRoundShield.isWooden(itemStack)) {
+			Minecraft.getMinecraft().renderEngine.bindTexture(SHIELD_WOODEN_TEXTURE);
+		} else {
+			Minecraft.getMinecraft().renderEngine.bindTexture(SHIELD_METAL_TEXTURE);
+			
+			int colour = ModManager.shieldRegistry[0].getColorFromItemStack(itemStack, 0);
+			float r = (float)(colour >> 16 & 255) / 255.0f;
+			float g = (float)(colour >> 8 & 255) / 255.0f;
+			float b = (float)(colour & 255) / 255.0f;
+			GL11.glColor4f(r, g, b, 1.0f);
+		}
 	}
 }
