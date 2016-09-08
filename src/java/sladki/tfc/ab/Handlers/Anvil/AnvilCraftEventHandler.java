@@ -15,7 +15,7 @@ public class AnvilCraftEventHandler {
 
     @SubscribeEvent
     public void onAnvilCraftEvent(AnvilCraftEvent event) {
-        if(event.result.getItem() instanceof ItemRoundShield) {
+        if(event.result != null && event.result.getItem() instanceof ItemRoundShield) {
             AnvilManager.setDurabilityBuff(event.result, shieldRecipeDummy.getSkillMult((EntityPlayer) event.entity));
         }
     }
